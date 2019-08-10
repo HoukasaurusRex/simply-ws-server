@@ -1,5 +1,6 @@
 {
   "verbose": false,
   "ignore": ["*.test.js"],
+  "ext": "js,html,css",
   "watch": ["./bin/www", "*.js"]
 }
