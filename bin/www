@@ -12,7 +12,7 @@ const server = http.createServer(app)
 
 const port = normalizePort(process.env.PORT || '3000')
 
-const wss = new WebSocket.Server({ port: 8000 })
+const wss = new WebSocket.Server({ server })
 
 /**
  * Event listener for HTTP server "error" event.
@@ -106,10 +106,11 @@ wss.on('connection', ws => {
       users.removeUser(ws.id)
       users.addUser(ws.id, name, room)
     })
+    ws.on('close', () => console.log('Client disconnected'))
     ws.send(`
-    Welcome to a Simply Websockets Server,
-    try emitting "message" for a response
-  `)
+      Welcome to a Simply Websockets Server,
+      try emitting "message" for a response
+    `)
   } catch (error) {
     console.error(error)
     ws.send(err.message)
