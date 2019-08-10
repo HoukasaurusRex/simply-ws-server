@@ -1,20 +1,22 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const path = require('path')
+const express = require('express')
+const cookieParser = require('cookie-parser')
+const morgan = require('morgan')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const controller = require('./controllers/index')
 
-var app = express();
+const normalizePort = require('./utils/normalize-port')
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+const app = express()
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(morgan('dev'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')))
 
-module.exports = app;
+app.get('/', controller.home)
+
+app.set('port', normalizePort(process.env.PORT || '3000'))
+
+module.exports = app
