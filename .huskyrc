@@ -1,6 +1,6 @@
 {
   "hooks": {
     "pre-commit": "lint-staged",
-    "pre-push": "yarn test"
+    "pre-push": "yarn version --patch && git add . && git commit -m 'version: patch' && yarn test"
   }
 }
