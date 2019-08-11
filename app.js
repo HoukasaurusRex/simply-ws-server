@@ -1,22 +1,24 @@
-const path = require('path')
-const express = require('express')
-const cookieParser = require('cookie-parser')
-const morgan = require('morgan')
+const usersController = require('./controllers/users')
+const messagesController = require('./controllers/messages')
+const bind = require('./utils/bind')
 
-const controller = require('./controllers/index')
-
-const normalizePort = require('./utils/normalize-port')
-
-const app = express()
-
-app.use(morgan('dev'))
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-app.use(cookieParser())
-app.use(express.static(path.join(__dirname, 'public')))
-
-app.get('/', controller.home)
-
-app.set('port', normalizePort(process.env.PORT || '3000'))
+function app(client) {
+  try {
+    const wss = this
+    bind.broadcast(wss, client)
+    client.isAlive = true
+    client.on('pong', messagesController.pong)
+    client.on('broadcast', messagesController.broadcast)
+    client.on('message', messagesController.message)
+    client.on('join', usersController.join)
+    client.on('close', usersController.disconnect)
+    client.send(messagesController.welcome())
+    setInterval(() => messagesController.feed(client), 2000)
+    setInterval(() => messagesController.ping(client), 10000)
+  } catch (error) {
+    console.error(error)
+    client.send(error.message)
+  }
+}
 
 module.exports = app
