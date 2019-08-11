@@ -63,3 +63,4 @@ This project is [MIT](https://github.com/pterobyte/simply-ws-server/blob/master/
 * [ ] Room management
 * [ ] User management
 * [ ] Binary streams
+* [ ] Tests
