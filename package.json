@@ -6,9 +6,7 @@
     "start": "node bin/www",
     "dev": "nodemon bin/www",
     "test": "echo 'no tests created'",
-    "lint": "eslint --quiet --fix",
-    "precommit": "lint-staged",
-    "prepush": "yarn test"
+    "lint": "eslint --quiet --fix"
   },
   "dependencies": {
     "debug": "~2.6.9",
@@ -27,5 +25,11 @@
     "husky": "^3.0.3",
     "lint-staged": "^9.2.1",
     "nodemon": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test"
+    }
   }
 }
