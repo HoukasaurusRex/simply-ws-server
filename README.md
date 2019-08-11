@@ -55,5 +55,11 @@ Give a ⭐️ if this project helped you!
 Copyright © 2019 [JT Houk <jt1992@gmail.com> (https://jt.houk.space/)](https://github.com/Pterobyte).<br />
 This project is [MIT](https://github.com/pterobyte/simply-ws-server/blob/master/LICENSE) licensed.
 
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+### TODO 
+
+* [ ] API List
+* [ ] README Docs
+* [ ] Boilerplate docs
+* [ ] Room management
+* [ ] User management
+* [ ] Binary streams
