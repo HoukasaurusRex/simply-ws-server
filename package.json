@@ -9,8 +9,11 @@
     "lint": "eslint --quiet --fix"
   },
   "dependencies": {
+    "bufferutil": "^4.0.1",
     "debug": "~2.6.9",
     "moment": "^2.24.0",
+    "utf-8-validate": "^5.0.2",
+    "uuid": "^3.3.3",
     "ws": "^7.1.1"
   },
   "main": "app.js",
@@ -24,6 +27,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "husky": "^3.0.3",
     "lint-staged": "^9.2.1",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2"
   }
 }

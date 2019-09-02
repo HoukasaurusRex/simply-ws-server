@@ -1,19 +1,16 @@
 const Messages = require('../models/Messages')
 const messages = new Messages()
 
-exports.ping = function(client) {
+exports.pingMessage = function() {
+  const client = this
   if (!client.isAlive) return client.terminate()
   client.isAlive = false
-  client.ping(null, false, true)
+  client.ping(null)
 }
 
-exports.pong = function() {
+exports.pongMessage = function() {
   const client = this
   client.isAlive = true
-}
-
-exports.feed = function(client) {
-  client.send(messages.getRandomMessage())
 }
 
 exports.welcome = function() {
@@ -21,7 +18,12 @@ exports.welcome = function() {
     Welcome to a Simply Websockets Server,
     try emitting "message" for a response
   `
-  return messages.generateMessage('WSS Server', welcomeMessage)
+  return messages.generateMessage('Server', welcomeMessage)
+}
+
+exports.feed = function() {
+  const client = this
+  client.send(messages.getRandomMessage())
 }
 
 exports.message = function(message) {
@@ -29,7 +31,7 @@ exports.message = function(message) {
   client.broadcast(message)
 }
 
-exports.broadcast = function(message) {
+exports.echo = function(message) {
   const client = this
-  client.broadcast(message)
+  client.send(messages.generateMessage('Server', message.text))
 }
