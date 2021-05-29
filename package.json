@@ -14,7 +14,7 @@
     "moment": "^2.24.0",
     "utf-8-validate": "^5.0.2",
     "uuid": "^3.3.3",
-    "ws": "^7.1.1"
+    "ws": "^7.4.6"
   },
   "main": "app.js",
   "keywords": [],
